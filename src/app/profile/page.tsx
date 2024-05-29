@@ -62,7 +62,7 @@ export default function ProfilePage() {
             <div className="ml-32 mt-4">
               <p>Email: {email}</p>
               {/* <p>User: {data.data.username || "Username not available"}</p>               */}
-              {/* <p>Msg: {data.message}</p>               */}
+              <p>Msg: {data.message || "Not available"}</p>              
             </div>
           </div>
         </div>
