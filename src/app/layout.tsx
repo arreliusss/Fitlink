@@ -7,8 +7,8 @@ import Footers from "./(component)/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "abcdefg",
-  description: "gym app",
+  title: "Fitlink",
+  description: "Gym booking app",
 };
 
 export default function RootLayout({

@@ -11,7 +11,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/getaccount/6654b2da88dd96f28a3c51cb")
+      .get("http://localhost:5000/getaccount/6654cd44e1364edada175a9f")
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);

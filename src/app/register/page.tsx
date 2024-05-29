@@ -4,6 +4,7 @@ import { Button, buttonVariants } from "../../components/ui/button";
 import Navbar2 from "../(component)/navbar2";
 import { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,8 +14,10 @@ export default function RegisterPage() {
     height: "",
     email: "",
     phone: "",
-    password: ""
+    password: "",
   });
+
+  const [errors, setErrors] = useState({});
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -23,25 +26,57 @@ export default function RegisterPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     let updatedValue = value;
-  
-    if (name === 'weight' || name === 'height') {
-      updatedValue = parseInt(value, 10) || 0; 
+
+    if (name === "weight" || name === "height") {
+      updatedValue = parseInt(value, 10) || 0;
     }
-  
+
     setFormData({
       ...formData,
-      [name]: updatedValue
+      [name]: updatedValue,
     });
-  }; 
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (formData.username.length < 8) {
+      newErrors.username = "Username must be at least 8 characters long.";
+    }
+
+    const phonePattern = /^\+\d{8,13}$/;
+    if (!phonePattern.test(formData.phone)) {
+      newErrors.phone = "Phone number must start with + and followed by 8-13 digits.";
+    }
+
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordPattern.test(formData.password)) {
+      newErrors.password = "Password must contain at least one capital letter, one number, and one symbol.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       console.log("Submitting form data:", formData); // Debugging
-      const response = await axios.post("http://localhost:5000/createaccount", formData);
+      const response = await axios.post(
+        "http://localhost:5000/createaccount",
+        formData
+      );
       console.log("Response data:", response.data); // Debugging
     } catch (error) {
-      console.error("Error occurred:", error.response ? error.response.data : error.message); // Debugging
+      console.error(
+        "Error occurred:",
+        error.response ? error.response.data : error.message
+      ); // Debugging
     }
   };
 
@@ -51,7 +86,9 @@ export default function RegisterPage() {
         <h1 className="text-3xl mb-6 font-bold">Create New Account</h1>
         <div className="flex font-normal -mt-4">
           <h2>Already a member?</h2>
-          <h2 className="text-customMaroon ml-2">Login</h2>
+          <Link href='/login'>
+            <h2 className="text-customMaroon ml-2">Login</h2>
+          </Link>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="flex mt-5">
@@ -64,6 +101,7 @@ export default function RegisterPage() {
               onChange={handleChange}
             ></input>
           </div>
+          {errors.username && <p className="text-red-500">{errors.username}</p>}
           <div className="flex mt-7">
             <input
               type="text"
@@ -102,6 +140,7 @@ export default function RegisterPage() {
               onChange={handleChange}
             ></input>
           </div>
+          {errors.phone && <p className="text-red-500">{errors.phone}</p>}
           <div className="flex mt-7">
             <input
               type={showPassword ? "text" : "password"}
@@ -121,10 +160,14 @@ export default function RegisterPage() {
               className="w-5 h-5 -ml-6 mt-2.5 text-white"
             />
           </div>
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
           <div className="flex mt-4">
             <Button
               type="submit"
-              className={buttonVariants({ size: "reg2", variant: "reg_button" })}
+              className={buttonVariants({
+                size: "reg2",
+                variant: "reg_button",
+              })}
             >
               Register
             </Button>
