@@ -3,6 +3,7 @@ import { Button, buttonVariants } from "../../components/ui/button";
 import Home from "../page";
 import Navbar2 from "../(component)/navbar2";
 import NavbarHome from "..//(component)/navbarhome";
+import Navbar from "../(component)/navbar";
 import {
   Carousel,
   CarouselContent,
@@ -28,7 +29,7 @@ export default function Homepage() {
         className="background-image"
         alt="Background Image"
       />
-      <NavbarHome />
+      <Navbar />
       <div className="flex flex-col m-20 space-y-4">
         <h1 className="text-3xl font-bold font-sans">Program Offers</h1>
         <div className="flex justify-between">

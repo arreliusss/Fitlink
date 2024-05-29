@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <main className="flex flex-col items-center justify-between p-24 font-sans"> // add nunito font here
+      <main className="flex flex-col items-center justify-between p-24 font-sans"> 
         <div>
           <img
             src="gym_bro.png"
