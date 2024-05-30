@@ -20,5 +20,6 @@ func main() {
 
 	router.POST("/createaccount", routes.CreateAccount)
 	router.GET("/getaccount/:id", routes.GetAccount)
+	router.POST("/getaccounts", routes.LoginAccount)
 	router.Run(":" + port)
 }
