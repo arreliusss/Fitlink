@@ -77,7 +77,7 @@ func LoginAccount(c *gin.Context) {
 			return
 		}
 	
-		err := accountCollection.FindOne(ctx, bson.M{"username": account.Username, "password": account.Password}).Decode(&account)
+		err := accountCollection.FindOne(ctx, bson.M{"email": account.Email, "password": account.Password}).Decode(&account)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -139,3 +139,37 @@ func UpdateAccount(c *gin.Context) {
 	defer cancel()
 	c.JSON(http.StatusOK, gin.H{"data": result})
 }
+
+func GetAccountByEmailAndPassword(c *gin.Context) {
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	var account models.User
+
+	email := c.Query("email")
+	password := c.Query("password")
+
+	err := accountCollection.FindOne(ctx, bson.M{"email": email, "password": password}).Decode(&account)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	defer cancel()
+	c.JSON(http.StatusOK, gin.H{"data": account})
+}
+
+func GetAccountByEmail(c *gin.Context) {
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	var account models.User
+
+	email := c.Query("email")
+
+	err := accountCollection.FindOne(ctx, bson.M{"email": email}).Decode(&account)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	defer cancel()
+	c.JSON(http.StatusOK, gin.H{"data": account})
+}
+

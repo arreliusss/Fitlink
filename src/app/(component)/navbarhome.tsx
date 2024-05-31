@@ -16,9 +16,9 @@ export default function NavbarHome() {
           FitLink
         </div>
         <div className="flex justify-between m-5 gap-x-8">
-          <h1 className="mt-1">Home</h1>
-          <h1 className="mt-1">About Us</h1>
-          <h1 className="mt-1">Program</h1>
+          <Link href=''><h1 className="mt-1">Home</h1></Link>
+          <Link href='/aboutus'><h1 className="mt-1">About Us</h1></Link>
+          <Link href='/homepage'><h1 className="mt-1">Program</h1></Link>
           <Avatar>
             <AvatarImage src="avatar.png" />
           </Avatar>

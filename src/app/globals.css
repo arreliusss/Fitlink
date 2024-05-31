@@ -50,3 +50,30 @@ body, html {
   z-index: -1;
   opacity: 25%;
 }
+
+.bgimg-container {
+  display: grid;
+  column-gap: 50px;
+  height: 100%;
+  width: 100%;
+}
+
+.bgimg2, .bgimg3, .bgimg4 {
+  background-size: cover;
+  background-position: left;
+  width: 50%;
+  height: 100%;
+  opacity: 50%;
+}
+
+.bgimg2 {
+  background-image: url('/gym_bg2.jpg'); /* Update with the correct path */
+}
+
+.bgimg3 {
+  background-image: url('/gym_bg3.jpg'); /* Update with the correct path */
+}
+
+.bgimg4 {
+  background-image: url('/gym_bg4.jpeg'); /* Update with the correct path */
+}

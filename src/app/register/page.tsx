@@ -4,6 +4,7 @@ import { Button, buttonVariants } from "../../components/ui/button";
 import Navbar2 from "../(component)/navbar2";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 
 export default function RegisterPage() {
@@ -18,6 +19,7 @@ export default function RegisterPage() {
   });
 
   const [errors, setErrors] = useState({});
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -72,6 +74,7 @@ export default function RegisterPage() {
         formData
       );
       console.log("Response data:", response.data); // Debugging
+      router.push('/homepage'); // Redirect to homepage on successful submission
     } catch (error) {
       console.error(
         "Error occurred:",
