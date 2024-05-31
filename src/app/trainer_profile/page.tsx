@@ -3,20 +3,13 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import React from "react";
 import Link from "next/link";
 import axios from "axios";
+import Navbarhome from "../(component)/navbarhome";
 
 export default function TrainerProfile() {
   return (
+    <main className="justify-between">
+            <Navbarhome />
     <div className="bg-customGray2 bg-suto static text-white p-24 font-sans">
-      <div className="absolute top-0 left-0 m-8">
-        <Link href='/homepage'>
-          <Button type="button" variant="book_button">
-            <img
-              src="back.png"
-              className="absolute justify-content-center m-4"
-            />
-          </Button>
-        </Link>
-      </div>
       <div className="container justify-center mx-auto flex items-center  ">
         <img
           src="gananwo.png"
@@ -106,5 +99,6 @@ export default function TrainerProfile() {
         </div>
       </div>
     </div>
+    </main>
   );
 }
