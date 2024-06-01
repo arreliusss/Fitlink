@@ -1,9 +1,10 @@
+"use client";
 import Image from "next/image";
 import { Button, buttonVariants } from "../../components/ui/button";
-import Home from "../page";
-import Navbar2 from "../(component)/navbar2";
-import NavbarHome from "..//(component)/navbarhome";
+import { useState, useEffect } from "react";
+import NavbarHome from "../(component)/navbarhome";
 import Navbar from "../(component)/navbar";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -21,7 +22,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+interface UserData {
+  ID: string;
+  username: string;
+  password: string;
+  phone: string;
+  email: string;
+  weight: number;
+  height: number;
+  created_at: string;
+}
+
 export default function Homepage() {
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+  }, []);
+
   return (
     <main className="justify-between">
       <img
@@ -29,7 +50,7 @@ export default function Homepage() {
         className="background-image"
         alt="Background Image"
       />
-      <Navbar />
+      {userData ? <NavbarHome /> : <Navbar />}
       <div className="flex flex-col m-20 space-y-4">
         <h1 className="text-3xl font-bold font-sans">Program Offers</h1>
         <div className="flex justify-between">
@@ -70,14 +91,16 @@ export default function Homepage() {
                             repudiandae sint ex a odio animi. Sit doloribus
                             accusantium at?
                             <div className="ml-72 mt-8 font-normal">
-                              <Button
-                                className={buttonVariants({
-                                  size: "book",
-                                  variant: "book_button",
-                                })}
-                              >
-                                Book
-                              </Button>
+                              <Link href="/trainer_profile">
+                                <Button
+                                  className={buttonVariants({
+                                    size: "book",
+                                    variant: "book_button",
+                                  })}
+                                >
+                                  Book
+                                </Button>
+                              </Link>
                             </div>
                           </div>
                         </div>

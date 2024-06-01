@@ -84,8 +84,8 @@ func LoginAccount(c *gin.Context) {
 		}
 	
 		defer cancel()
-		c.JSON(http.StatusOK, gin.H{"data": account})
-		c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
+		c.JSON(http.StatusOK, gin.H{"accounts": account})
+		// c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
 }
 
 func DeleteAccount(c *gin.Context) {

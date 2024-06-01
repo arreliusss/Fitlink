@@ -46,9 +46,17 @@ export default function RegisterPage() {
       newErrors.username = "Username must be at least 8 characters long.";
     }
 
+    if (formData.weight <= 0 || formData.weight < 30 || formData.weight > 500) {
+      newErrors.weight = "Weight must be between 30 and 500 kg.";
+    }
+
+    if (formData.height <= 0 || formData.height < 120 || formData.height > 290) {
+      newErrors.height = "Height must be between 120 and 290 cm.";
+    }
+
     const phonePattern = /^\+\d{8,13}$/;
     if (!phonePattern.test(formData.phone)) {
-      newErrors.phone = "Phone number must start with + and followed by 8-13 digits.";
+      newErrors.phone = "Phone number must start with + and be followed by 8-13 digits.";
     }
 
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -107,22 +115,24 @@ export default function RegisterPage() {
           {errors.username && <p className="text-red-500">{errors.username}</p>}
           <div className="flex mt-7">
             <input
-              type="text"
+              type="number"
               name="weight"
               className="h-10 w-64 rounded-xl text-white bg-customGray3 pl-3"
-              placeholder="Weight                                     kg"
+              placeholder="Weight                                    kg"
               value={formData.weight}
               onChange={handleChange}
             ></input>
             <input
-              type="text"
+              type="number"
               name="height"
               className="h-10 w-64 rounded-xl ml-4 text-white bg-customGray3 pl-3"
-              placeholder="Height                                     cm"
+              placeholder="Height                                   cm"
               value={formData.height}
               onChange={handleChange}
             ></input>
           </div>
+          {errors.weight && <p className="text-red-500">{errors.weight}</p>}
+          {errors.height && <p className="text-red-500">{errors.height}</p>}
           <div className="flex mt-7">
             <input
               type="email"
@@ -176,6 +186,11 @@ export default function RegisterPage() {
             </Button>
           </div>
         </form>
+      </div>
+      <div className="bgimg-container">
+        <div className="bgimg2" />
+        <div className="bgimg3" />
+        <div className="bgimg4" />
       </div>
       <Navbar2 />
     </main>

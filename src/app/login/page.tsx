@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar2 from "../(component)/navbar2";
 import { Button, buttonVariants } from "../../components/ui/button";
+import { login } from "../action";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,10 +26,11 @@ export default function LoginPage() {
         password,
       });
 
-      console.log(JSON.stringify(response.data));
+      console.log(response.data)
+      console.log(response.data.accounts.password)
 
       if (response.data) {
-        localStorage.setItem("userData", JSON.stringify(response.data));
+        localStorage.setItem("userData", JSON.stringify(response.data.accounts));
         localStorage.setItem("email", email); // Store email in local storage
         router.push("/profile"); // Redirect to homepage
       } else {

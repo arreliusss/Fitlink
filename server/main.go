@@ -21,5 +21,8 @@ func main() {
 	router.POST("/createaccount", routes.CreateAccount)
 	router.GET("/getaccount/:id", routes.GetAccount)
 	router.POST("/getaccounts", routes.LoginAccount)
+	router.POST("/createorder", routes.CreateOrder)
+	router.GET("/getorder/:id", routes.GetOrder)
+	router.GET("/getorders", routes.GetOrders)
 	router.Run(":" + port)
 }

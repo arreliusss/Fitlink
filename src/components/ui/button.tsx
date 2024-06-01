@@ -22,6 +22,7 @@ const buttonVariants = cva(
         category: "bg-customRed text-white hover:bg-customRed",
         book_button: "bg-customMaroon text-white hover:bg-customMaroon/50",
         login_member: "text-customMaroon",
+        calendar_button: "bg-none text-white hover:customRed"
       },
       size: {
         default: "h-10 px-4 py-2",
