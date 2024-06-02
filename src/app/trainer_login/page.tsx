@@ -21,18 +21,19 @@ export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/getaccounts", {
+      const response = await axios.post("http://localhost:5000/gettraineraccounts", {
         email,
         password,
       });
 
-      console.log(response.data)
-      console.log(response.data.accounts.password)
+      console.log(response.data);
+      console.log(response.data.trainer.password);
 
-      if (response.data) {
-        localStorage.setItem("userData", JSON.stringify(response.data.accounts));
-        localStorage.setItem("email", email); // Store email in local storage
-        router.push("/profile_page"); // Redirect to homepage
+      if (response.data && response.data.trainer.password === password) {
+        localStorage.setItem("userTrainer", JSON.stringify(response.data.trainer));
+        localStorage.setItem("emailTrainer", email); // Store email in local storage
+        setError(""); // Clear the error message
+        router.push("/trainer_page"); // Redirect to homepage
       } else {
         setError("Invalid email or password.");
       }
@@ -45,7 +46,7 @@ export default function LoginPage() {
     <main className="flex h-screen font-sans">
       <Navbar2 />
       <div className="w-1/2 flex flex-col justify-center p-24">
-        <h1 className="text-3xl mb-6 font-bold">Welcome Back!</h1>
+        <h1 className="text-3xl mb-6 font-bold">Login as Trainer</h1>
         <div className="flex font-normal -mt-4">
           <h2>New here?</h2>
           <Link href="/register">

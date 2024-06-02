@@ -188,9 +188,9 @@ export default function RegisterPage() {
         </form>
       </div>
       <div className="bgimg-container">
-        <div className="bgimg2" />
-        <div className="bgimg3" />
-        <div className="bgimg4" />
+        <div className="bgimg6" />
+        <div className="bgimg7" />
+        <div className="bgimg8" />
       </div>
       <Navbar2 />
     </main>

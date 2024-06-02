@@ -58,7 +58,7 @@ body, html {
   width: 100%;
 }
 
-.bgimg2, .bgimg3, .bgimg4 {
+.bgimg2, .bgimg3, .bgimg4, .bgimg6, .bgimg7, .bgimg8 {
   background-size: cover;
   background-position: left;
   width: 50%;
@@ -80,4 +80,12 @@ body, html {
 
 .bgimg6 {
   background-image: url('/gym_bg6.jpeg'); /* Update with the correct path */
+}
+
+.bgimg7 {
+  background-image: url('/gym_bg8.jpg'); /* Update with the correct path */
+}
+
+.bgimg8 {
+  background-image: url('/gym_bg9.avif'); /* Update with the correct path */
 }
